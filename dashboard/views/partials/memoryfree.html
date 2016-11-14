@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Memory.</h2>
+			<p>{{ memoryFree.latest.date }}</p>
+			<table class="table">
+				<thead>
+					{{#each memoryFree.latest.data }}
+					<th>
+						{{ this.name }}
+					</th>
+					{{/each}}
+				</thead>
+				<tbody>
+					<tr>
+						{{#each memoryFree.latest.data }}
+							<td>{{ this.value }}</td>
+						{{/each}}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

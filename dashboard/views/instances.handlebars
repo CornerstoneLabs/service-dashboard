@@ -1,0 +1,33 @@
+{{> nav instancesSelected=true }}
+{{> instances }}
+
+{{#if showAdd }}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form name="addMonitor" action="/instances/add" method="post">
+					<legend>Add instance.</legend>
+
+					<input type="hidden" name="_id" value="{{ data._id}}"/>
+
+					<div class="form-group">
+						<label for="instanceName">Name</label>
+						<input type="text" class="form-control" id="instanceName" name="instanceName" value="{{ data.name }}">
+					</div>
+
+					<div class="form-group">
+						<label for="instanceIp">IP</label>
+						<input type="text" class="form-control" id="instanceIp" name="instanceIp" value="{{ data.ip }}">
+					</div>
+
+					<div class="form-group">
+						<label for="instanceUser">User</label>
+						<input type="text" class="form-control" id="instanceUser" name="instanceUser" value="{{ data.user }}">
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{{/if}}

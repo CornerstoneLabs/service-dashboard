@@ -1,0 +1,54 @@
+{{> nav scheduleSelected=true }}
+{{> schedule }}
+
+{{#if showAdd }}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form name="addMonitor" class="form" action="/schedule/add" method="post">
+					<legend>Add schedule.</legend>
+
+					<input type="hidden" name="_id" value="{{ data._id}}"/>
+
+					<div class="form-group">
+						<label for="scheduleMonitor">Monitor</label>
+						<select class="form-control" name="scheduleMonitor">
+							{{#monitors }}
+								{{{option ../data.monitor }}}
+							{{/monitors}}
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="scheduleInstance">Instance</label>
+						<select class="form-control" name="scheduleInstance">
+							{{#instances }}
+								{{{option ../data.instance }}}
+							{{/instances }}
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="scheduleCron">Cron</label>
+
+						<input class="form-control" type="text" name="scheduleCron" value="{{ data.cron }}"/>
+					</div>
+
+					<div class="form-group">
+						<label for="timeout">Timeout (seconds)</label>
+
+						<input class="form-control" type="text" name="timeout" value="{{ data.timeout }}"/>
+					</div>
+
+					<div class="form-group">
+						<label for="parameters">Parameters</label>
+
+						<textarea style="height: 400px" class="form-control" name="parameters">{{ data.parameters }}</textarea>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{{/if}}

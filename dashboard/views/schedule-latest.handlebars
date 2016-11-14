@@ -1,0 +1,22 @@
+{{> nav scheduleSelected=true }}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Latest run.</h2>
+		</div>
+
+		{{#each results }}
+			<div class="col-md-12">
+				{{ this.date }}
+			</div>
+
+			<div class="col-md-12">
+				{{ json this.data }}
+			</div>
+
+			<div class="col-md-12">
+				<pre>{{ this.output }}</pre>
+			</div>
+		{{/each }}
+	</div>
+</div>

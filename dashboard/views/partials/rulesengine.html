@@ -1,0 +1,52 @@
+<style>
+	.padding {
+		padding: 8px;
+		margin-bottom: 8px;
+	}
+	.red {
+		background: #ffdddd;
+	}
+
+	.orange {
+		background: #ffffdd;
+	}
+
+	.green {
+		background: #ddffdd;
+	}
+
+	.instance-stripe.odd {
+		background: #f8f8f8;
+	}
+</style>
+
+{{#stripes instanceData 'even' 'odd'}}
+	<div class="instance-stripe {{stripeClass}}">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>{{ this.ip }}</h2>
+				</div>
+
+				{{#each this.rules }}
+					<div class="col-md-2">
+						<div class="{{ this.status }} padding" style="height: 180px;">
+							<h3><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></h3>
+							<div>{{ this.message }}</div>
+							<div>{{ this.errors }}</div>
+							<div>{{ this.information }}</div>
+
+							{{#if this.errors }}
+							     <form action="/schedule/action" method="post">
+									 <input type="hidden" name="selected" value="{{ this.schedule._id }}" />
+									 <input type="hidden" name="action" value="execute" />
+									 <button type="submit" class="btn" name="">Retry</button>
+								 </form>
+							{{/if}}
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+{{/stripes}}

@@ -1,0 +1,62 @@
+<form action="/schedule/action" method="post">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Scheduled tasks.</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-3 pull-right">
+				<div class="row">
+					<div class="col-xs-9 col-md-9">
+						<div class="form-group">
+							<select class="form-control" id="" name="action">
+								<option>Actions...</option>
+								<option value="delete">Delete</option>
+								<option value="execute">Execute task</option>
+								<option value="lastrun">Last run</option>
+								<option value="log">Log</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<button type="submit" class="btn btn-default">Go</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Monitor</th>
+							<th>Instance</th>
+							<th>Cron</th>
+							<th>Timeout</th>
+							<th>Selected</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each schedule}}
+							<tr>
+								<td><a href="?id={{ this._id }}">{{ this.monitorName }}</a></td>
+								<td><a href="?id={{ this._id }}">{{ this.instanceName }}</a></td>
+								<td><a href="?id={{ this._id }}">{{ this.cron }}</a></td>
+								<td><a href="?id={{ this._id }}">{{ this.timeout }}</a></td>
+								<td><input type="checkbox" name="selected" value="{{ this._id }}" /></td>
+							</tr>
+						{{/each }}
+						<tr>
+							<td colspan="5">
+								<a class="btn btn-default" href="?add=true">Add a new scheduled task...</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>elasticsearch</h2>
+			<p>{{ elasticsearch.latest.data }} documents as of {{ elasticsearch.latest.date }}.</p>
+		<!-- 	<canvas id="elasticSearch" ></canvas> -->
+		</div>
+	</div>
+</div>
+<!--
+<script>
+var ctx = document.getElementById("elasticSearch");
+var elasticSearch = new Chart(ctx, {
+	type: 'line',
+	data: {
+		labels: [
+			{{#each elasticsearch.data }}
+				"{{ this.date }}",
+			{{/each }}
+		],
+		datasets: [{
+			label: 'Documents',
+			data: [
+				{{#each elasticsearch.data }}
+					"{{ this.data }}",
+				{{/each }}
+			],
+			backgroundColor: [
+				'rgba(255, 99, 132, 0.2)'
+			],
+			borderColor: [
+				'rgba(255,99,132,1)'
+			],
+			borderWidth: 1
+		}]
+	},
+	options: {
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero:false
+				}
+			}],
+			xAxes: [{
+				ticks: {
+					beginAtZero:false
+				}
+			}]
+		}
+	}
+});
+</script>
+ -->
