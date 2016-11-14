@@ -39,4 +39,3 @@ dashboard/fabric-plugins/__pycache__/
 dashboard/fabric-plugins/__init__.py
 env/
 dashboard/.idea/
-.gitignore
