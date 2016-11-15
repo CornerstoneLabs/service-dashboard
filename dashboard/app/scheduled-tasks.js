@@ -6,7 +6,7 @@ var exec = require('child_process').exec;
 
 var jobs = [];
 var CWD = './fabric-plugins/';
-var COMMAND = 'fab ';
+var COMMAND = 'source ../../env/bin/activate && fab ';
 var DASHBOARD_MONGO_DATABASE = 'dumteedum_status';
 
 /**
