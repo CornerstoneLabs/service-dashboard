@@ -32,10 +32,14 @@ function childEnvironmentFactory(instance, schedule, monitor) {
 	return environment;
 }
 
-function executeScheduledItemCallback (error, stdout, stderr) {
-	console.log(stdout);
-	console.log(stderr);
-	console.log(error);
+function executeScheduledItemCallback (schedule, monitor, instance) {
+	return function (error, stdout, stderr) {
+		console.log(stdout);
+		console.log(stderr);
+		console.log(error);
+
+		schedule.
+	};
 }
 
 /**
@@ -57,7 +61,7 @@ async function executeScheduledItem (schedule) {
 
 	console.log(`Exec: ${commandText}`);
 	console.log(environment);
-	exec(commandText, params, executeScheduledItemCallback);
+	exec(commandText, params, executeScheduledItemCallback(schedule, monitor, instance));
 	console.log('Executed.')
 }
 
