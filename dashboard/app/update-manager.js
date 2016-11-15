@@ -1,5 +1,5 @@
 var UPDATE_CHECK = "[ $(git rev-parse HEAD) = $(git ls-remote $(git rev-parse --abbrev-ref @{u} | sed 's/\\// /g') | cut -f1) ] && echo up to date || echo not up to date";
-var UPDATE_UPDATE = "git pull";
+var UPDATE_UPDATE = "git pull && npm install";
 var UPDATE_CRON = "0 * * * * *";
 var exec = require('child_process').exec;
 var nodeSchedule = require('node-schedule');
