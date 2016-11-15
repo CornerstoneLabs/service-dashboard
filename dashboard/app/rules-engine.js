@@ -12,9 +12,9 @@ function evaluateTimeOut(data, schedule) {
 	var result = (timeDifference > schedule.timeout);
 
 	if (result === true) {
-		data.errors.push(`Checked ${timeDifference} seconds ago`);
+		data.errors.push(`Checked ${timeDifference} seconds ago! `);
 	} else {
-		data.messages.push(`Checked ${timeDifference} seconds ago`);
+		data.messages.push(`Checked ${timeDifference} seconds ago.`);
 	}
 }
 

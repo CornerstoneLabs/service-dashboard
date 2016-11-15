@@ -33,9 +33,12 @@
 						<div class="{{ this.status }} padding" style="height: 180px;">
 							<h3><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></h3>
 							<div>{{ this.message }}</div>
-							<div>{{ this.errors }}</div>
+							{{#each this.errors }}
+								<div>
+									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
+								</div>
+							{{/each }}
 							<div>{{ this.information }}</div>
-
 							{{#if this.errors }}
 							     <form action="/schedule/action" method="post">
 									 <input type="hidden" name="selected" value="{{ this.schedule._id }}" />
