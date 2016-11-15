@@ -2,7 +2,7 @@ var nodeSchedule = require('node-schedule');
 var Schedule = require('../models/Schedule.js');
 var Monitor = require('../models/Monitor.js');
 var Instance = require('../models/Instance.js');
-var glob = require('glob')
+var glob = require('glob');
 var path = require('path');
 
 var loadedRules = [];
