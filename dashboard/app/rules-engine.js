@@ -38,16 +38,16 @@ function evaluateMemory(data, schedule, monitor) {
 	if (monitor.fabricCommand === 'status__memory_free') {
 		try {
 			var parsedData = memoryParser(data);
-			var free = parseInt(parsedData.free);
+			var available = parseInt(parsedData.available);
 			var total = parseInt(parsedData.total);
-			var percentage = parseInt((parseFloat(free) / parseFloat(total)) * 100);
+			var percentage = parseInt((parseFloat(available) / parseFloat(total)) * 100);
 			var quarter = (total / 4);
 
-			if (free < quarter) {
+			if (available < quarter) {
 				data.errors.push('Free memory lower than 25%');
 			}
 
-			data.messages.push(`${free} of ${total}. ${percentage}% free`);
+			data.messages.push(`${available} of ${total}. ${percentage}% free`);
 		} catch (e) {
 			data.errors.push(e);
 		}
