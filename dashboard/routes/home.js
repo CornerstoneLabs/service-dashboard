@@ -17,6 +17,13 @@ async function home (req, res) {
 		context.rules.forEach((rule) => {
 			console.log(rule);
 
+			if (req.query.instanceid) {
+				if (rule.instance._id.toString() !== req.query.instanceid) {
+					console.log(rule.instance._id);
+                    return;
+				}
+			}
+
 			let key = `${rule.instance.name}`;
 
 			if (hosts.indexOf(key) === -1) {

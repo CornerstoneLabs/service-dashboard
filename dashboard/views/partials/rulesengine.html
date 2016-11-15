@@ -25,28 +25,75 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>{{ this.ip }}</h2>
+					<h6>{{ this.ip }}</h6>
 				</div>
 
 				{{#each this.rules }}
-					<div class="col-md-2">
-						<div class="{{ this.status }} padding" style="height: 180px;">
-							<h3><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></h3>
-							<div><a href="/schedule/action?action=log&amp;selected={{ this.schedule._id }}">Log</a></div>
-							<div>{{ this.message }}</div>
-							{{#each this.errors }}
-								<div>
-									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
+					<div class="col-md-3">
+						<div class="card">
+							<div class="content">
+								<div class="row">
+									<div class="col-xs-5">
+										<div class="icon-big icon-warning text-center">
+											<i class="ti-server"></i>
+										</div>
+									</div>
+									<div class="col-xs-7">
+										<div class="numbers">
+											<p><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></p>
+											{{#compare status 'green' }}
+												<i class="ti-check"></i>
+											{{/compare }}
+											{{#compare status 'red' }}
+											<i class="ti-alert"></i>
+											{{/compare }}
+										</div>
+									</div>
 								</div>
-							{{/each }}
-							<div>{{ this.information }}</div>
-							{{#if this.errors }}
-							     <form action="/schedule/action" method="post">
-									 <input type="hidden" name="selected" value="{{ this.schedule._id }}" />
-									 <input type="hidden" name="action" value="execute" />
-									 <button type="submit" class="btn" name="">Retry</button>
-								 </form>
-							{{/if}}
+								<div class="row">
+									<div class="col-xs-12">
+										<div>{{ this.message }}</div>
+										{{#each this.errors }}
+										<div>
+											<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
+										</div>
+										{{/each }}
+										<div>{{ this.information }}</div>
+										{{#if this.errors }}
+										<form action="/schedule/action" method="post">
+											<input type="hidden" name="selected" value="{{ this.schedule._id }}" />
+											<input type="hidden" name="action" value="execute" />
+											<button type="submit" class="btn" name="">Retry</button>
+										</form>
+										{{/if}}
+									</div>
+								</div>
+								<div class="footer">
+									<hr>
+									<div class="stats">
+										<i class="ti-reload"></i> {{ this.checkedAgo }}
+									</div>
+								</div>
+							</div>
+
+							<!--<div class="{{ this.status }} padding" style="height: 180px;">-->
+								<!--<h3></h3>-->
+								<!--<div><a href="/schedule/action?action=log&amp;selected={{ this.schedule._id }}">Log</a></div>-->
+								<!--<div>{{ this.message }}</div>-->
+								<!--{{#each this.errors }}-->
+									<!--<div>-->
+										<!--<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}-->
+									<!--</div>-->
+								<!--{{/each }}-->
+								<!--<div>{{ this.information }}</div>-->
+								<!--{{#if this.errors }}-->
+									 <!--<form action="/schedule/action" method="post">-->
+										 <!--<input type="hidden" name="selected" value="{{ this.schedule._id }}" />-->
+										 <!--<input type="hidden" name="action" value="execute" />-->
+										 <!--<button type="submit" class="btn" name="">Retry</button>-->
+									 <!--</form>-->
+								<!--{{/if}}-->
+							<!--</div>-->
 						</div>
 					</div>
 				{{/each}}

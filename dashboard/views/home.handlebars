@@ -1,9 +1,46 @@
-{{> nav homeSelected=true }}
-{{> updates }}
-{{> rulesengine }}
+<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+		<!--
+			Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+			Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+		-->
+
+		<div class="sidebar-wrapper">
+			<div class="logo">
+				<a href="/" class="simple-text">
+					Service dashboard
+				</a>
+			</div>
+
+			<ul class="nav">
+				<li class="/">
+					<a href="?instanceid={{ this._id }}">
+						<i class="ti-panel"></i>
+						<p>Everything</p>
+					</a>
+				</li>
+				{{#each instances }}
+					<li class="{{#if this.selected }} active {{/if }}">
+						<a href="?instanceid={{ this._id }}">
+							<i class="ti-panel"></i>
+							<p>{{ this.name }}</p>
+						</a>
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+
+	<div class="main-panel">
+		{{> nav homeSelected=true }}
+		{{> rulesengine }}
+		{{> updates }}
+	</div>
+</div>
 
 <script>
 	window.setTimeout(function () {
-		location.reload();
+		//location.reload();
 	}, 5000);
 </script>
