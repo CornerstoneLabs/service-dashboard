@@ -1,5 +1,5 @@
 var UPDATE_CHECK = "[ $(git rev-parse HEAD) = $(git ls-remote $(git rev-parse --abbrev-ref @{u} | sed 's/\\// /g') | cut -f1) ] && echo up to date || echo not up to date";
-var UPDATE_UPDATE = "git pull && pm2 restart";
+var UPDATE_UPDATE = "git pull";
 var UPDATE_CRON = "0 * * * * *";
 var exec = require('child_process').exec;
 var nodeSchedule = require('node-schedule');
@@ -36,13 +36,16 @@ function checkForUpdates () {
 }
 
 function doUpdateDelegate (error, stdout, stderr) {
+	console.log(error);
+	console.log(stdout);
+	console.log(stderr);
 	_isUpdating = false;
 	checkForUpdates();
 }
 
 function doUpdate () {
 	_isUpdating = true;
-	exec(UPDATE_CHECK, doUpdateDelegate);
+	exec(UPDATE_UPDATE, doUpdateDelegate);
 }
 
 function scheduleUpdateCheck () {
