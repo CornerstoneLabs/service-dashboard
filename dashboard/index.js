@@ -30,6 +30,6 @@ start(app);
 //
 // Now the app is started, start the monitors and rules engine.
 //
-//scheduledTasks.start();
+scheduledTasks.start();
 rulesEngine.start();
 updateManager.start();
