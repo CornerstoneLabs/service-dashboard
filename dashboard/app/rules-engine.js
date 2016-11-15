@@ -2,15 +2,19 @@ var nodeSchedule = require('node-schedule');
 var Schedule = require('../models/Schedule.js');
 var Monitor = require('../models/Monitor.js');
 var Instance = require('../models/Instance.js');
-var ruleTaskTimeout = require('../rules/rule-task-timeout.js');
-var ruleTaskFailed = require('../rules/rule-task-failed.js');
-var ruleLowMemory = require('../rules/memory-check/rule-low-memory.js');
+var glob = require('glob')
+var path = require('path');
 
 var loadedRules = [];
 var job;
 var rules = [];
 var output = [];
 var generated = [];
+
+glob.sync('./rules/**/*.js').forEach(function(file) {
+	var r = require(path.resolve(file));
+	loadedRules.push(r);
+});
 
 async function checkSchedule (schedule) {
 	let monitorId = schedule.monitor;
@@ -25,9 +29,9 @@ async function checkSchedule (schedule) {
 
 			let status = 'green';
 
-			ruleTaskTimeout(result, schedule);
-			ruleTaskFailed(result, schedule);
-			ruleLowMemory(result, schedule, monitor);
+			loadedRules.forEach((rule)=> {
+				rule(result, schedule, monitor);
+			});
 
 			if (result.errors.length > 0) {
 				status = 'red';
