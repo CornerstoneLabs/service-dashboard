@@ -40,7 +40,9 @@ function stripesHelper(array, even, odd, fn, elseFn) {
 		return buffer;
 	}
 	else {
-		return elseFn.fn();
+		if (elseFn && elseFn.fn) {
+			return elseFn.fn();
+		}
 	}
 }
 

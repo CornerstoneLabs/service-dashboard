@@ -75,7 +75,7 @@ async function checkSchedule (schedule) {
 				status = 'red';
 			}
 
-			output.push({
+			generated.push({
 				name: monitor.name,
 				instance: instance,
 				schedule: schedule,
@@ -85,7 +85,7 @@ async function checkSchedule (schedule) {
 				information: null
 			});
 		} catch (e) {
-			output.push({
+			generated.push({
 				name: 'MongoDB',
 				instance: {
 					ip: 'localhost',
@@ -114,6 +114,11 @@ rules.push(async () => {
 });
 
 function run () {
+	generated = [];
+	rules.forEach(async (rule) => {
+		var result = await rule();
+	});
+
 	output = [];
 	output.push({
 		name: 'Rules engine',
@@ -129,11 +134,9 @@ function run () {
 		}
 	});
 
-	rules.forEach(async (rule) => {
-		var result = await rule();
+	generated.forEach((item) => {
+		output.push(item);
 	});
-
-	generated = output;
 }
 
 function start () {
