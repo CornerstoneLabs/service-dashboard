@@ -6,6 +6,7 @@ var ruleTaskTimeout = require('../rules/rule-task-timeout.js');
 var ruleTaskFailed = require('../rules/rule-task-failed.js');
 var ruleLowMemory = require('../rules/memory-check/rule-low-memory.js');
 
+var loadedRules = [];
 var job;
 var rules = [];
 var output = [];
