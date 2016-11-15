@@ -1,11 +1,13 @@
 var Instance = require('../models/Instance.js');
 var homeViewModel = require('../viewmodels/home-view-model.js');
 var rulesEngine = require('../app/rules-engine.js');
+var updateManager = require('../app/update-manager.js');
 
 async function home (req, res) {
 	try {
 		var context = await homeViewModel();
 
+		context.updateStatus = updateManager.status();
 		context.rules = rulesEngine.status();
 		context.instances = await Instance.list();
 

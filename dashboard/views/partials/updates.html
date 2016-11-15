@@ -1,0 +1,33 @@
+{{#if updateStatus.hasUpdates }}
+	<div class="updates">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="alert alert-success">
+						<div class="row">
+							<div class="col-xs-12 col-md-9">
+								<strong>Updates available.</strong> Your dashboard needs updating.
+							</div>
+							<div class="col-xs-12 col-md-3 pull-right">
+								<form action="/system/update" method="post"><button type="submit" class="btn btn-success">Update</button></form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{{/if }}
+{{#if updateStatus.isUpdating }}
+<div class="updates">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="alert alert-success">
+					<strong>Updating... please wait.</strong>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/if }}

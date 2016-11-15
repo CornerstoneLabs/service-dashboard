@@ -16,6 +16,7 @@ var start = require('./app/start.js');
 var staticFiles = require('./app/static.js');
 var scheduledTasks = require('./app/scheduled-tasks.js');
 var rulesEngine = require('./app/rules-engine.js');
+var updateManager = require('./app/update-manager.js');
 
 //
 // Start app.
@@ -31,3 +32,4 @@ start(app);
 //
 scheduledTasks.start();
 rulesEngine.start();
+updateManager.start();

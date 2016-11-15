@@ -7,6 +7,7 @@ function registerCrud(app, mountPoint, moduleName) {
 
 function routes (app) {
 	app.get('/', require('./home.js'));
+	app.post('/system/update', require('./system/update.js'));
 
 	registerCrud(app, '/monitor', 'monitor');
 	registerCrud(app, '/instances', 'instances');
