@@ -54,7 +54,8 @@ async function executeScheduledItem (schedule) {
 	var environment = childEnvironmentFactory(instance, schedule, monitor);
 	var params = {
 		cwd: CWD,
-		env: environment
+		env: environment,
+		shell: '/bin/bash'
 	};
 
 	console.log(`Exec: ${commandText}`);
