@@ -12,19 +12,20 @@
 							<div class="content">
 								<div class="row">
 									<div class="col-xs-5">
-										<div class="icon-big icon-warning text-center">
-											<i class="ti-server"></i>
+										<div class="icon-big {{#compare status 'green' }}icon-success{{/if }} {{#compare status 'red' }}danger{{/if}} text-center">
+											<!--<i class="ti-server"></i>-->
+											{{#compare status 'green' }}
+											<i class="ti-check"></i>
+											{{/compare }}
+											{{#compare status 'red' }}
+											<i class="ti-alert"></i>
+											{{/compare }}
 										</div>
 									</div>
 									<div class="col-xs-7">
 										<div class="numbers">
 											<p><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></p>
-											{{#compare status 'green' }}
-												<i class="ti-check"></i>
-											{{/compare }}
-											{{#compare status 'red' }}
-											<i class="ti-alert"></i>
-											{{/compare }}
+
 										</div>
 									</div>
 								</div>
