@@ -37,8 +37,6 @@ function executeScheduledItemCallback (schedule, monitor, instance) {
 		console.log(stdout);
 		console.log(stderr);
 		console.log(error);
-
-		schedule.
 	};
 }
 
