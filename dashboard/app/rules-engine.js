@@ -49,7 +49,7 @@ function evaluateMemory(data, schedule, monitor) {
 
 			data.messages.push(`${available} of ${total}. ${percentage}% free`);
 		} catch (e) {
-			data.errors.push(e);
+			//data.errors.push(e);
 		}
 	}
 }
