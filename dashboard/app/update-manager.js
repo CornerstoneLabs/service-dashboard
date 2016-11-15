@@ -45,6 +45,7 @@ function doUpdateDelegate (error, stdout, stderr) {
 
 function doUpdate () {
 	_isUpdating = true;
+	_hasUpdates = false;
 	exec(UPDATE_UPDATE, doUpdateDelegate);
 }
 
