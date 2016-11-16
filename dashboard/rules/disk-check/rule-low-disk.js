@@ -7,11 +7,11 @@ module.exports = function evaluateDisk(data, schedule, monitor) {
 				let size = disk.size + 'KB';
 
 				if (disk.size > 1024) {
-					size = disk.size + 'MB';
+					size = parseInt(disk.size / 1024) + 'MB';
 				}
 
 				if (disk.size > 1024*1024) {
-					size = disk.size + 'GB';
+					size = parseInt(disk.size / (1024*1024)) + 'GB';
 				}
 
 				data.messages.push(`${name}: ${use_percent}% of ${size}`);

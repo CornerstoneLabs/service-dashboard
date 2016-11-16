@@ -29,8 +29,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-xs-12">
+								<div class="footer">
+									<hr>
+									<div class="stats">
+										<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div>
 										<div>{{ this.message }}</div>
 										{{#each this.errors }}
 										<div>
@@ -45,12 +47,6 @@
 											<button type="submit" class="btn" name="">Retry</button>
 										</form>
 										{{/if}}
-									</div>
-								</div>
-								<div class="footer">
-									<hr>
-									<div class="stats">
-										<!--<i class="ti-reload"></i>--> {{ this.checkedAgo }}
 									</div>
 								</div>
 							</div>
