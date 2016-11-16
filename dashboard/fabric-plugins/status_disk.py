@@ -20,7 +20,7 @@ def convert(data):
                 'size': int(values[1]),
                 'used': int(values[2]),
                 'available': int(values[3]),
-                'use%': values[4],
+                'use_percent': values[4],
                 'mount': values[5]
             })
 
