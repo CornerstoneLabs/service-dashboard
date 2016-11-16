@@ -25,7 +25,7 @@ def status():
     """Run check on disk."""
     schedule_log("Starting Disk Monitor")
 
-    command_text = 'df -h'
+    command_text = 'df'
     output, error = safe_run(command_text)
 
     if error:
