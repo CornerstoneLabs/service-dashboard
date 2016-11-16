@@ -14,7 +14,7 @@ module.exports = function evaluateDisk(data, schedule, monitor) {
 					size = parseInt(disk.size / (1024*1024)) + 'GB';
 				}
 
-				data.messages.push(`${name}: ${use_percent}% of ${size}`);
+				data.messages.push(`${name}: ${use_percent} of ${size}`);
 			});
 		} catch (e) {
 		}

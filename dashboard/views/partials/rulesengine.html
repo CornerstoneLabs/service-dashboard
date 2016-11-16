@@ -32,12 +32,12 @@
 								<div class="footer">
 									<hr>
 									<div class="stats">
-										<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div>
-										<div>{{ this.message }}</div>
+										<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div><br/>
+										<div>{{ this.message }}</div><br/
 										{{#each this.errors }}
-										<div>
-											<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
-										</div>
+											<div>
+												<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
+											</div>
 										{{/each }}
 										<div>{{ this.information }}</div>
 										{{#if this.errors }}
