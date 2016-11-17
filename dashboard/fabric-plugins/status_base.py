@@ -54,7 +54,7 @@ def schedule_log(text):
         "message": text
     }
 
-    inserted_id = collection.insert_one(post).inserted_id
+    inserted_id = collection.insert_one(post, bypass_document_validation=True).inserted_id
     return inserted_id
 
 
