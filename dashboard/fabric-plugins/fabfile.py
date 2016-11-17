@@ -7,6 +7,7 @@ import status_memory_free
 import status_pm2_list
 import status_url_check
 import status_postgres_isready
+import status_couchdb
 
 
 def status():
@@ -49,3 +50,7 @@ def status__apt_check():
 def status__postgres_isready():
     """Run pg_isready status."""
     status_postgres_isready.status()
+
+def status__couchdb():
+    """Check CouchDB status."""
+    status_couchdb.status()

@@ -74,6 +74,7 @@ def safe_run(command_text):
         try:
             schedule_log('In settings context')
             output = run(command_text)
+            schedule_log('Executed command.')
         except FabricException as ex:
             error = '%s' % ex
             schedule_log('Error %s' % ex)

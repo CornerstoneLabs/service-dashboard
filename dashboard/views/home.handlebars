@@ -48,7 +48,7 @@
 			url += 'sparse=true';
 
 			$.get(url, function (data) {
-				$('.rules-engine').html(data);
+				$('.rules-engine').replaceWith(data);
 			}).always(function() {
 				refreshRulesEngineCards();
 			});

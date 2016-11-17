@@ -4,7 +4,8 @@ function monitorAdd (req, res) {
 	var data = {
 		name: req.body.monitorName,
 		fabricCommand: req.body.fabricCommand,
-		mongoCollection: req.body.mongoCollection
+		mongoCollection: req.body.mongoCollection,
+		icon: req.body.icon
 	};
 
 	if (req.body._id) {

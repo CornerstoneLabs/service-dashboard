@@ -1,3 +1,5 @@
+var THRESHOLD = 80;
+
 module.exports = function evaluateDisk(data, schedule, monitor) {
 	if (monitor.fabricCommand === 'status__disk') {
 		try {
@@ -14,7 +16,17 @@ module.exports = function evaluateDisk(data, schedule, monitor) {
 					size = parseInt(disk.size / (1024*1024)) + 'GB';
 				}
 
-				data.messages.push(`${name}: ${use_percent} of ${size}`);
+				let crossedThreshold = false;
+
+				if (parseInt(use_percent.replace('%', '')) > THRESHOLD) {
+					crossedThreshold = true;
+				}
+
+				if (crossedThreshold) {
+					data.errors.push(`${name}: ${use_percent} used of ${size}`);
+				} else {
+					data.messages.push(`${name}: ${use_percent} used of ${size}.`);
+				}
 			});
 		} catch (e) {
 		}
