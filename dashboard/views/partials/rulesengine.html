@@ -11,7 +11,7 @@
 						{{#each this.rules }}
 							<div class="col-md-3">
 								<div class="card">
-									<div class="content" style="height: 280px">
+									<div class="content">
 										<div class="row">
 											<div class="col-xs-5">
 												<div class="icon-big {{#compare status 'green' }}icon-success{{/compare }} {{#compare status 'red' }}danger{{/compare}} text-center">
@@ -30,15 +30,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="footer">
-											<hr>
-											<div class="stats">
-												<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div><br/>
+										<div class="row">
+											<div class="col-xs-12" style="min-height: 60px;">
 												<div>{{ this.message }}</div><br/>
 												{{#each this.errors }}
-													<div>
-														<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
-													</div>
+												<div>
+													<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
+												</div>
 												{{/each }}
 												<div>{{ this.information }}</div>
 												{{#if this.errors }}
@@ -48,6 +46,12 @@
 													<button type="submit" class="btn" name="">Retry</button>
 												</form>
 												{{/if}}
+											</div>
+										</div>
+										<div class="footer">
+											<hr>
+											<div class="stats">
+												<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div>
 											</div>
 										</div>
 									</div>
