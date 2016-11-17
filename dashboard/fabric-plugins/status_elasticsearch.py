@@ -25,6 +25,7 @@ def status():
     except Exception as ex:
         schedule_log('Reporting as failed.')
         schedule_log('%s' % ex)
+        schedule_log(output)
         error = '%s'
 
     if error:
