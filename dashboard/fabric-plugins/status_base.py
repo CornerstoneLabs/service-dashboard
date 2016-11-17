@@ -19,7 +19,7 @@ class FabricException(Exception):
 
 def save(ok, data, database_name, collection_name, captured_output=None):
     """Save the data."""
-    client = MongoClient('192.168.1.90', 27017)
+    client = MongoClient(os.environ['DASHBOARD_MONGO_CONNECTION'], 27017)
     database = getattr(client, database_name)
     collection = database[collection_name]
 
@@ -34,6 +34,9 @@ def save(ok, data, database_name, collection_name, captured_output=None):
         post["output"] = captured_output
 
     inserted_id = collection.insert_one(post).inserted_id
+
+    collection.create_index('date')
+    collection.create_index('ip')
     return inserted_id
 
 
@@ -42,7 +45,7 @@ def schedule_log(text):
     global batch
 
     database_name = 'dumteedum_status'
-    client = MongoClient('192.168.1.90', 27017)
+    client = MongoClient(os.environ['DASHBOARD_MONGO_CONNECTION'], 27017)
     database = getattr(client, database_name)
     collection = database['SCHEDULE_LOG']
 
@@ -55,6 +58,10 @@ def schedule_log(text):
     }
 
     inserted_id = collection.insert_one(post).inserted_id
+
+    collection.create_index('date')
+    collection.create_index('ip')
+    collection.create_index('schedule_id')
     return inserted_id
 
 

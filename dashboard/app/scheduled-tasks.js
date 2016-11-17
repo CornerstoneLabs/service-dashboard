@@ -1,24 +1,25 @@
-var nodeSchedule = require('node-schedule');
-var Instance = require('../models/Instance.js');
-var Monitor = require('../models/Monitor.js');
-var Schedule = require('../models/Schedule.js');
-var exec = require('child_process').exec;
+let nodeSchedule = require('node-schedule');
+let Instance = require('../models/Instance.js');
+let Monitor = require('../models/Monitor.js');
+let Schedule = require('../models/Schedule.js');
+let exec = require('child_process').exec;
 
-var jobs = [];
-var CWD = './fabric-plugins/';
-var COMMAND = 'source ../../env/bin/activate && fab ';
-var DASHBOARD_MONGO_DATABASE = 'dumteedum_status';
+let jobs = [];
+let CWD = './fabric-plugins/';
+let COMMAND = 'source ../../env/bin/activate && fab ';
+let DASHBOARD_MONGO_DATABASE = 'dumteedum_status';
 
 /**
  * Clone the local environment, then override some variables
  *
  * @param instance
  * @param schedule
+ * @param monitor
  * @returns {{evironment}}
  */
 function childEnvironmentFactory(instance, schedule, monitor) {
-	var environment = {};
-	for (var e in process.env) {
+	let environment = {};
+	for (let e in process.env) {
 		environment[e] = process.env[e];
 	}
 
@@ -28,6 +29,7 @@ function childEnvironmentFactory(instance, schedule, monitor) {
 	environment.DASHBOARD_MONGO_COLLECTION = monitor.mongoCollection;
 	environment.DASHBOARD_MONGO_DATABASE = DASHBOARD_MONGO_DATABASE;
 	environment.DASHBOARD_PARAMETERS = schedule.parameters || '';
+	environment.DASHBOARD_MONGO_CONNECTION = '192.168.1.90';
 
 	return environment;
 }
@@ -48,11 +50,11 @@ function executeScheduledItemCallback (schedule, monitor, instance) {
 async function executeScheduledItem (schedule) {
 	console.log('Preparing to execute scheduled task');
 
-	var monitor = await Monitor.get(schedule.monitor);
-	var instance = await Instance.get(schedule.instance);
-	var commandText = `${COMMAND} ${monitor.fabricCommand}`;
-	var environment = childEnvironmentFactory(instance, schedule, monitor);
-	var params = {
+	let monitor = await Monitor.get(schedule.monitor);
+	let instance = await Instance.get(schedule.instance);
+	let commandText = `${COMMAND} ${monitor.fabricCommand}`;
+	let environment = childEnvironmentFactory(instance, schedule, monitor);
+	let params = {
 		cwd: CWD,
 		env: environment,
 		shell: '/bin/bash'
@@ -73,7 +75,7 @@ function enqueueJob (schedule) {
 	console.log(`Scheduling task ${schedule.monitor} for ${schedule.cron}`);
 
 	try {
-		var job = nodeSchedule.scheduleJob(schedule.cron, function () {
+		let job = nodeSchedule.scheduleJob(schedule.cron, function () {
 			console.log(`Executing task ${schedule.monitor} for ${schedule.cron}`);
 			executeScheduledItem(schedule);
 		});
@@ -90,7 +92,7 @@ function enqueueJob (schedule) {
  * Schedule all jobs in the scheduler to be run.
  */
 async function scheduleJobs () {
-	var schedules = await Schedule.list();
+	let schedules = await Schedule.list();
 
 	schedules.forEach(enqueueJob);
 }

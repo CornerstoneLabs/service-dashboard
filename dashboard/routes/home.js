@@ -1,18 +1,20 @@
-var Instance = require('../models/Instance.js');
-var homeViewModel = require('../viewmodels/home-view-model.js');
-var rulesEngine = require('../app/rules-engine.js');
-var updateManager = require('../app/update-manager.js');
+let Instance = require('../models/Instance.js');
+let homeViewModel = require('../viewmodels/home-view-model.js');
+let rulesEngine = require('../app/rules-engine.js');
+let updateManager = require('../app/update-manager.js');
 
 async function home (req, res) {
+	let startTime = new Date();
+
 	try {
-		var context = await homeViewModel();
+		let context = await homeViewModel();
 
 		context.updateStatus = updateManager.status();
 		context.rules = rulesEngine.status();
 		context.instances = await Instance.list();
 
 		context.rulesInstances = {};
-		var hosts = [];
+		let hosts = [];
 
 		context.rules.forEach((rule) => {
 			console.log(rule);
@@ -70,7 +72,15 @@ async function home (req, res) {
 			return 0;
 		});
 
-		res.render('home', context);
+		let template = 'home';
+		if (req.query.sparse && (req.query.sparse === 'true')) {
+			template = 'home-sparse';
+			context.layout = false;
+		}
+
+		context.timed = new Date().getTime() - startTime.getTime();
+
+		res.render(template, context);
 	} catch (e) {
 		res.send(500);
 	}

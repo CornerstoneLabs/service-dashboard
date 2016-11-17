@@ -40,7 +40,20 @@
 </div>
 
 <script>
-	window.setTimeout(function () {
-		location.reload();
-	}, 5000);
+
+	function refreshRulesEngineCards () {
+		window.setTimeout(function () {
+			var url = window.location.href;
+			url += url.indexOf('?') === -1 ? '?' : '&';
+			url += 'sparse=true';
+
+			$.get(url, function (data) {
+				$('.rules-engine').html(data);
+			}).always(function() {
+				refreshRulesEngineCards();
+			});
+		}, 5000);
+	}
+
+	refreshRulesEngineCards();
 </script>

@@ -1,78 +1,81 @@
-{{#stripes instanceData 'even' 'odd'}}
-	<div class="instance-stripe {{stripeClass}}">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<h6>{{ this.ip }}</h6>
-				</div>
-
-				{{#each this.rules }}
-					<div class="col-md-3">
-						<div class="card">
-							<div class="content">
-								<div class="row">
-									<div class="col-xs-5">
-										<div class="icon-big {{#compare status 'green' }}icon-success{{/compare }} {{#compare status 'red' }}danger{{/compare}} text-center">
-											<!--<i class="ti-server"></i>-->
-											{{#compare status 'green' }}
-											<i class="ti-check"></i>
-											{{/compare }}
-											{{#compare status 'red' }}
-											<i class="ti-alert"></i>
-											{{/compare }}
-										</div>
-									</div>
-									<div class="col-xs-7">
-										<div class="numbers">
-											<p><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></p>
-
-										</div>
-									</div>
-								</div>
-								<div class="footer">
-									<hr>
-									<div class="stats">
-										<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div><br/>
-										<div>{{ this.message }}</div><br/>
-										{{#each this.errors }}
-											<div>
-												<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
-											</div>
-										{{/each }}
-										<div>{{ this.information }}</div>
-										{{#if this.errors }}
-										<form action="/schedule/action" method="post">
-											<input type="hidden" name="selected" value="{{ this.schedule._id }}" />
-											<input type="hidden" name="action" value="execute" />
-											<button type="submit" class="btn" name="">Retry</button>
-										</form>
-										{{/if}}
-									</div>
-								</div>
-							</div>
-
-							<!--<div class="{{ this.status }} padding" style="height: 180px;">-->
-								<!--<h3></h3>-->
-								<!--<div><a href="/schedule/action?action=log&amp;selected={{ this.schedule._id }}">Log</a></div>-->
-								<!--<div>{{ this.message }}</div>-->
-								<!--{{#each this.errors }}-->
-									<!--<div>-->
-										<!--<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}-->
-									<!--</div>-->
-								<!--{{/each }}-->
-								<!--<div>{{ this.information }}</div>-->
-								<!--{{#if this.errors }}-->
-									 <!--<form action="/schedule/action" method="post">-->
-										 <!--<input type="hidden" name="selected" value="{{ this.schedule._id }}" />-->
-										 <!--<input type="hidden" name="action" value="execute" />-->
-										 <!--<button type="submit" class="btn" name="">Retry</button>-->
-									 <!--</form>-->
-								<!--{{/if}}-->
-							<!--</div>-->
-						</div>
+<div class="rules-engine">
+	{{#stripes instanceData 'even' 'odd'}}
+		<div class="instance-stripe {{stripeClass}}">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>{{ this.ip }}</h6>
 					</div>
-				{{/each}}
+
+					{{#each this.rules }}
+						<div class="col-md-3">
+							<div class="card">
+								<div class="content">
+									<div class="row">
+										<div class="col-xs-5">
+											<div class="icon-big {{#compare status 'green' }}icon-success{{/compare }} {{#compare status 'red' }}danger{{/compare}} text-center">
+												<!--<i class="ti-server"></i>-->
+												{{#compare status 'green' }}
+												<i class="ti-check"></i>
+												{{/compare }}
+												{{#compare status 'red' }}
+												<i class="ti-alert"></i>
+												{{/compare }}
+											</div>
+										</div>
+										<div class="col-xs-7">
+											<div class="numbers">
+												<p><a href="/schedule/action?action=lastrun&amp;selected={{ this.schedule._id }}">{{ this.name }}</a></p>
+
+											</div>
+										</div>
+									</div>
+									<div class="footer">
+										<hr>
+										<div class="stats">
+											<div><!--<i class="ti-reload"></i>--> <i class="ti-timer"></i> {{ this.checkedAgo }}</div><br/>
+											<div>{{ this.message }}</div><br/>
+											{{#each this.errors }}
+												<div>
+													<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}
+												</div>
+											{{/each }}
+											<div>{{ this.information }}</div>
+											{{#if this.errors }}
+											<form action="/schedule/action" method="post">
+												<input type="hidden" name="selected" value="{{ this.schedule._id }}" />
+												<input type="hidden" name="action" value="execute" />
+												<button type="submit" class="btn" name="">Retry</button>
+											</form>
+											{{/if}}
+										</div>
+									</div>
+								</div>
+
+								<!--<div class="{{ this.status }} padding" style="height: 180px;">-->
+									<!--<h3></h3>-->
+									<!--<div><a href="/schedule/action?action=log&amp;selected={{ this.schedule._id }}">Log</a></div>-->
+									<!--<div>{{ this.message }}</div>-->
+									<!--{{#each this.errors }}-->
+										<!--<div>-->
+											<!--<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ this }}-->
+										<!--</div>-->
+									<!--{{/each }}-->
+									<!--<div>{{ this.information }}</div>-->
+									<!--{{#if this.errors }}-->
+										 <!--<form action="/schedule/action" method="post">-->
+											 <!--<input type="hidden" name="selected" value="{{ this.schedule._id }}" />-->
+											 <!--<input type="hidden" name="action" value="execute" />-->
+											 <!--<button type="submit" class="btn" name="">Retry</button>-->
+										 <!--</form>-->
+									<!--{{/if}}-->
+								<!--</div>-->
+							</div>
+						</div>
+					{{/each}}
+				</div>
 			</div>
 		</div>
-	</div>
-{{/stripes}}
+	{{/stripes}}
+</div>
+{{ timed }}
