@@ -8,7 +8,7 @@ function memoryParser (data) {
 	return result;
 }
 
-var THRESHOLD = 25;
+var THRESHOLD = 10;
 
 module.exports = function evaluateMemory(data, schedule, monitor) {
 	if (monitor.fabricCommand === 'status__memory_free') {
