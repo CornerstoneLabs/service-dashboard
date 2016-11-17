@@ -21,7 +21,7 @@ def status():
 
         schedule_log('Loaded json, saving.')
 
-        save(True, data, mongo_database(), mongo_collection(), output)
+        save(True, output, mongo_database(), mongo_collection(), output)
     except Exception as ex:
         schedule_log('Reporting as failed.')
         schedule_log('%s' % ex)
