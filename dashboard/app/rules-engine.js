@@ -151,11 +151,10 @@ function notifyFailedSucceeded () {
 	let countFailed = 0;
 	Object.keys(_scrobble).forEach((rule) => {
 		if (_scrobble[rule].status && _scrobble[rule].status === 'red') {
-			if (!_oldScrobble[rule] || (
-				_oldScrobble[rule] &&
+			if (_oldScrobble[rule] &&
 				_oldScrobble[rule].status &&
-				_oldScrobble[rule].status === 'green')) {
-				notify(_scrobble[rule].instance.name + ' ' +
+				_oldScrobble[rule].status === 'green') {
+				notify('⚠ ' + _scrobble[rule].instance.name + ' ' +
 					_scrobble[rule].monitor.name +
 					' warning. ' + _scrobble[rule].errors.join(' '));
 			}
@@ -167,7 +166,7 @@ function notifyFailedSucceeded () {
 			if (_oldScrobble[rule] &&
 				_oldScrobble[rule].status &&
 				_oldScrobble[rule].status === 'red') {
-				notify(_scrobble[rule].instance.name + ' ' +
+				notify('✓ ' + _scrobble[rule].instance.name + ' ' +
 					_scrobble[rule].monitor.name +
 					' recovered.');
 			}
