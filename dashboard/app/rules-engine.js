@@ -7,6 +7,7 @@ var path = require('path');
 
 var loadedRules = [];
 var job;
+var updateJob;
 var rules = [];
 var output = [];
 var generated = [];
@@ -178,15 +179,32 @@ function notifyFailedSucceeded () {
 	});
 
 	if (countFailed !== oldCountFailed) {
-		// report failed
-		//notify(countFailed + ' failing rule');
 	}
 	oldCountFailed = countFailed;
+}
+
+function notifyUpdate () {
+	let failures = false;
+
+	Object.keys(_scrobble).forEach((rule) => {
+		if (_scrobble[rule].status && _scrobble[rule].status === 'red') {
+			notify('⚠ ' + _scrobble[rule].instance.name + ' ' + _scrobble[rule].monitor.name + ' warning. ' + _scrobble[rule].errors.join(' '));
+			failures = true;
+		}
+	});
+
+	if (failures === false) {
+		notify('✓ all systems fine.');
+	}
 }
 
 function start () {
 	job = nodeSchedule.scheduleJob('* * * * * *', function () {
 		run();
+	});
+
+	updateJob = nodeSchedule.scheduleJob('0 0 * * * *', function () {
+		notifyUpdate();
 	});
 }
 
