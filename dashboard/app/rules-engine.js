@@ -88,7 +88,7 @@ rules.push(async () => {
 	}
 });
 
-var NOTIFY_USERS = json.parse(process.env['NOTIFY_USERS']);
+var NOTIFY_USERS = JSON.parse(process.env['NOTIFY_USERS']);
 
 function notify (text) {
 	let Twit = require('twit')
