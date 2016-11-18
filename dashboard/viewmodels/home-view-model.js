@@ -29,10 +29,14 @@ function homeViewModel() {
 
 			if (query.latest) {
 				collection.find().sort({date:-1}).limit(1).toArray(function(err, results) {
-					query.data = results.map(query.mapper);
-					query.latest = findLatest(query.data);
+					if (err) {
+						reject(err);
+					} else {
+						query.data = results.map(query.mapper);
+						query.latest = findLatest(query.data);
 
-					resolve();
+						resolve();
+					}
 				});
 			}
 		});
@@ -58,7 +62,7 @@ function homeViewModel() {
 
 	function checkAll(resolve, reject) {
 		return function () {
-			var success = true;
+			let success = true;
 
 			queries.forEach((query) => {
 				if (typeof query.data === 'undefined') {
@@ -74,7 +78,7 @@ function homeViewModel() {
 
 	function executeQueries(db) {
 		_db = db;
-		var promises = [];
+		let promises = [];
 
 		queries.forEach((query) => {
 			promises.push(executeQuery(query));

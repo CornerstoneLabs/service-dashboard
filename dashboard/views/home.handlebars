@@ -23,7 +23,7 @@
 				{{#each instances }}
 					<li class="{{#if this.selected }} active {{/if }}">
 						<a href="?instanceid={{ this._id }}">
-							<i class="ti-panel"></i>
+							<img src="{{ this.icon }}" style="width: 32px; height: 32px; float: left; margin-right: 12px;" />
 							<p>{{ this.name }}</p>
 						</a>
 					</li>

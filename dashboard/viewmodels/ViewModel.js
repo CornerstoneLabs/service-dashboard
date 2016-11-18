@@ -5,9 +5,9 @@ class ViewModel {
 	}
 
 	add (contextKey, fn) {
-		var context = this.context;
+		let context = this.context;
 
-		var functionExecutor = (resolve, reject) => {
+		let functionExecutor = (resolve, reject) => {
 			fn()
 				.then(function (data) {
 					context[contextKey] = data;
@@ -16,7 +16,7 @@ class ViewModel {
 				}, reject);
 		};
 
-		var promise = new Promise(functionExecutor);
+		let promise = new Promise(functionExecutor);
 
 		this.promises.push(promise);
 	}
@@ -26,7 +26,7 @@ class ViewModel {
 	}
 
 	execute (fn) {
-		var context = this.context;
+		let context = this.context;
 
 		Promise
 			.all(this.promises)

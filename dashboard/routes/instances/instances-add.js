@@ -4,7 +4,8 @@ function statusAdd (req, res) {
 	var data = {
 		name: req.body.instanceName,
 		ip: req.body.instanceIp,
-		user: req.body.instanceUser
+		user: req.body.instanceUser,
+		icon: req.body.instanceIcon
 	};
 
 	if (req.body._id) {
