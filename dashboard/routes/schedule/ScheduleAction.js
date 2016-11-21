@@ -39,9 +39,15 @@ class ScheduleAction {
 	}
 
 	actionDelete () {
+		var _this = this;
+
 		Schedule
 			.remove(this.request.body.selected || this.request.query.selected)
-			.then(this.success, this.fail);
+			.then(function () {
+				_this.success();
+			}, function () {
+				_this.fail();
+			});
 	}
 
 	async actionExecute () {
