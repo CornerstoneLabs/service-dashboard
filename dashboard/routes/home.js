@@ -17,11 +17,8 @@ async function home (req, res) {
 		let hosts = [];
 
 		context.rules.forEach((rule) => {
-			console.log(rule);
-
 			if (req.query.instanceid) {
 				if (rule.instance._id.toString() !== req.query.instanceid) {
-					console.log(rule.instance._id);
                     return;
 				}
 			}
