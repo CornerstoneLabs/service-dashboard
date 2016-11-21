@@ -39,6 +39,10 @@ def status():
         except Exception as ex:
             status = False
             schedule_log('Exception: %s' % ex)
+            data['results'].append({
+                'url': url,
+                'status': '%s' % ex
+            })
 
         if get_code != 200:
             status = False
