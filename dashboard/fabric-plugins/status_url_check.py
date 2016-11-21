@@ -24,17 +24,21 @@ def status():
     urls = get_parameters()
 
     schedule_log('Got %s URLs' % len(urls))
+    schedule_log('%s' % urls)
 
-    print(urls)
     for url in urls:
-        print('Getting url ')
-        print(url)
-        get_code = urlopen(url).getcode()
+        schedule_log('Checking: %s' % url)
+        try:
+            get_code = urlopen(url).getcode()
+            schedule_log('Got code: %s' % get_code)
 
-        data['results'].append({
-            'url': url,
-            'status': status
-        })
+            data['results'].append({
+                'url': url,
+                'status': get_code
+            })
+        except Exception as ex:
+            status = False
+            schedule_log('Exception: %s' % ex)
 
         if get_code != 200:
             status = False

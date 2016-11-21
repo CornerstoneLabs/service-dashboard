@@ -1,22 +1,22 @@
-var nodeSchedule = require('node-schedule');
-var Schedule = require('../models/Schedule.js');
-var Monitor = require('../models/Monitor.js');
-var Instance = require('../models/Instance.js');
-var glob = require('glob');
-var path = require('path');
+let nodeSchedule = require('node-schedule');
+let Schedule = require('../models/Schedule.js');
+let Monitor = require('../models/Monitor.js');
+let Instance = require('../models/Instance.js');
+let glob = require('glob');
+let path = require('path');
 
-var loadedRules = [];
-var job;
-var updateJob;
-var rules = [];
-var output = [];
-var generated = [];
-var oldCountFailed = 0;
-var _oldScrobble = {};
-var _scrobble = {};
+let loadedRules = [];
+let job;
+let updateJob;
+let rules = [];
+let output = [];
+let generated = [];
+let oldCountFailed = 0;
+let _oldScrobble = {};
+let _scrobble = {};
 
 glob.sync('./rules/**/*.js').forEach(function(file) {
-	var r = require(path.resolve(file));
+	let r = require(path.resolve(file));
 	loadedRules.push(r);
 });
 
@@ -80,7 +80,7 @@ async function checkSchedule (schedule) {
 
 rules.push(async () => {
 	try {
-		var schedules = await Schedule.list();
+		let schedules = await Schedule.list();
 
 		schedules.forEach(checkSchedule);
 	} catch (e) {
@@ -89,10 +89,10 @@ rules.push(async () => {
 	}
 });
 
-var NOTIFY_USERS = JSON.parse(process.env['NOTIFY_USERS']);
+let NOTIFY_USERS = JSON.parse(process.env['NOTIFY_USERS']);
 
 function notify (text) {
-	let Twit = require('twit')
+	let Twit = require('twit');
 
 	let twit = new Twit({
 		consumer_key: process.env['CONSUMER_KEY'],
@@ -108,7 +108,7 @@ function notify (text) {
 			text: text
 		};
 
-		twit.post('direct_messages/new', payload, function (err, data, response) {
+		twit.post('direct_messages/new', payload, function (err, data) {
 			console.log(err);
 			console.log(data);
 		})
