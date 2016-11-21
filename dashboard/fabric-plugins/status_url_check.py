@@ -36,6 +36,9 @@ def status():
                 'url': url,
                 'status': get_code
             })
+
+            if get_code != 200:
+                status = False
         except Exception as ex:
             status = False
             schedule_log('Exception: %s' % ex)
@@ -43,9 +46,6 @@ def status():
                 'url': url,
                 'status': '%s' % ex
             })
-
-        if get_code != 200:
-            status = False
 
     save(status, data, mongo_database(), mongo_collection(), output)
 
