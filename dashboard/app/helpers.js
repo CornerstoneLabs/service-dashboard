@@ -1,5 +1,6 @@
 var Handlebars = require('handlebars');
 var fs = require('fs');
+var stripAnsi = require('strip-ansi');
 
 function readFile (path) {
 	return fs.readFileSync(path, 'utf8');
@@ -74,6 +75,10 @@ function optionHelper (value) {
 	return '<option value="' + this._id + '" ' + selected + '>' + this.name + '</option>';
 }
 
+function ansi (value) {
+	return stripAnsi(value).replace('\r', '<br/>');
+}
+
 function helpers (app) {
 	Handlebars.registerHelper('dp', decimalPlaceHelper);
 	Handlebars.registerHelper('json', jsonHelper);
@@ -81,6 +86,7 @@ function helpers (app) {
 	Handlebars.registerHelper("stripes", stripesHelper);
 	Handlebars.registerHelper('select', selectHelper);
 	Handlebars.registerHelper('option', optionHelper);
+	Handlebars.registerHelper('ansi', ansi);
 
 	Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
 
