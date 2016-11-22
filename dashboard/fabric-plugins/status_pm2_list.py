@@ -31,6 +31,8 @@ def status():
 
     data = run('pm2 jlist', pty=False)
 
+    schedule_log('Jlist returned: %s' % data)
+
     try:
         save(True, json.loads(data), mongo_database(), mongo_collection(), output)
     except Exception as ex:
