@@ -27,9 +27,9 @@ def status():
     """Run PM2 Monitor."""
     schedule_log("Starting PM2 Monitor")
 
-    output = run('pm2 ls', pty=False)
+    output = run('pm2 ls')
 
-    data = run('pm2 jlist', pty=False)
+    data = run('pm2 jlist')
 
     schedule_log('Jlist returned: %s' % data)
 
