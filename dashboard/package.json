@@ -29,7 +29,7 @@
     "glob": "^7.1.1",
     "guid": "0.0.12",
     "handlebars": "^4.0.5",
-    "mongodb": "^2.2.11",
+    "mongodb": "^3.6.1",
     "node-schedule": "^1.2.0",
     "strip-ansi": "^3.0.1",
     "threads": "^0.7.0",
